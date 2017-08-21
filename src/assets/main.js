@@ -2,10 +2,10 @@ let answer = document.getElementById('answer');
 let attempt = document.getElementById('attempt');
 
 function guess() {
-    if(answer === '' && attempt === '') {
+    if(answer.value === '' && attempt.value === '') {
         setHiddenFields();
     }
-    
+
     let input = document.getElementById('user-guess');
     if(validateInput(input.value)){
         let results = getResults(input.value);
@@ -24,7 +24,7 @@ function guess() {
         }
         attempt.value++;
     }
-    
+
 }
 
 function setHiddenFields(){
@@ -45,9 +45,9 @@ function validateInput(input){
     var result = true;
     if(input.length !== 4){
         result = false;
-        setMessage("Guesses must be exactly 4 characters long.");        
+        setMessage("Guesses must be exactly 4 characters long.");
     }
-    
+
     return result;
 }
 function getResults(input){
@@ -56,13 +56,13 @@ function getResults(input){
     let okspan = '<span class="glyphicon glyphicon-ok"></span>';
     let rightCharWrongPosition = '<span class="glyphicon glyphicon-transfer"></span>';
     let wrongChar = '<span class="glyphicon glyphicon-remove"></span>';
-    
+
     let currentChar = '';
     let numCorrect = 0;
     for(var i = 0; i < input.length;i++){
         //loop through chars to check
         currentChar = input[i];
-        correctSequence = answer.value;
+        let correctSequence = answer.value;
         if(currentChar == correctSequence[i]){
             resultString += okspan;
             numCorrect++;
@@ -85,7 +85,7 @@ function getResults(input){
 function showAnswer(hasWon){
     let code = document.getElementById('code');
     code.innerHTML = answer.value;
-    
+
     if(hasWon){
         code.className += ' success';
     }
