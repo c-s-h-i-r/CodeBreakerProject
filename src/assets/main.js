@@ -1,12 +1,18 @@
 let answer = document.getElementById('answer');
 let attempt = document.getElementById('attempt');
+let input = document.getElementById('user-guess');
+let message = document.getElementById('message');
+let results = document.getElementById('results');
+let code = document.getElementById('code');
+let guessingDiv = document.getElementById('guessing-div');
+let replayDiv = document.getElementById('replay-div');
+
 
 function guess() {
     if(answer.value === '' && attempt.value === '') {
         setHiddenFields();
     }
 
-    let input = document.getElementById('user-guess');
     if(validateInput(input.value)){
         let results = getResults(input.value);
         if(results){
@@ -24,7 +30,6 @@ function guess() {
         }
         attempt.value++;
     }
-
 }
 
 function setHiddenFields(){
@@ -38,7 +43,7 @@ function setHiddenFields(){
 }
 
 function setMessage(msg){
-    document.getElementById('message').innerHTML = msg;
+    message.innerHTML = msg;
 }
 
 function validateInput(input){
@@ -76,14 +81,13 @@ function getResults(input){
     }
     resultString += '</div>';
 
-    //assign value to div's innerHTML
-    document.getElementById('results').innerHTML = resultString;
+    // assign value to div's innerHTML
+    results.innerHTML += resultString;
 
     return numCorrect == 4;
 }
 
 function showAnswer(hasWon){
-    let code = document.getElementById('code');
     code.innerHTML = answer.value;
 
     if(hasWon){
@@ -94,8 +98,6 @@ function showAnswer(hasWon){
     }
 }
 function showReplay(){
-    let guessingDiv = document.getElementById('guessing-div');
     guessingDiv.style.display = 'none';
-    let replayDiv = document.getElementById('replay-div');
     replayDiv.style.display = 'block';
 }
